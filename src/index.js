@@ -133,7 +133,9 @@ function getRunningReaction() {
   return runningReaction;
 }
 
-// 注册观察函数
+/**
+ * 在相关key上注册观察函数
+ */
 function registerRunningReaction(operation) {
   let { target, key, type } = operation;
   const runningReaction = getRunningReaction();
@@ -163,7 +165,7 @@ function registerRunningReaction(operation) {
 }
 
 /**
- * 值更新时触发观察函数
+ * 根据相关操作触发观察函数
  */
 function queueReactions4Operation(operation) {
   getReactions4Operation(operation).forEach((reaction) => reaction());
@@ -188,6 +190,9 @@ function getReactions4Operation({ target, key, type }) {
   return reactions4Key;
 }
 
+/**
+ * 将对应key的观察函数都收集到新的set里
+ */
 function addReactions4Key(reactions4Key, reactions4Raw, key) {
   const reactions = reactions4Raw.get(key);
   reactions && reactions.forEach((reaction) => reactions4Key.add(reaction));
@@ -211,7 +216,9 @@ function observe(fn) {
   return reaction;
 }
 
-// 把函数包裹为观察函数
+/**
+ * 把函数包裹为观察函数
+ */
 function runReactionWrap(reaction, fn, context, args) {
   try {
     // 把当前的观察函数推入栈内 开始观察响应式proxy
@@ -224,8 +231,5 @@ function runReactionWrap(reaction, fn, context, args) {
   }
 }
 
-/**
- * 导出相关方法
- */
 exports.reactive = reactive;
 exports.observe = observe;

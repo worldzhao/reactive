@@ -1,4 +1,4 @@
-const { reactive, observe } = require("../index");
+const { reactive, observe } = require("../src");
 
 const counter = reactive({ data: { count: 1 } });
 

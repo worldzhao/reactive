@@ -1,4 +1,4 @@
-const { reactive, observe } = require("../index");
+const { reactive, observe } = require("../src");
 
 const data1 = reactive({ a: 1, b: 2 });
 
