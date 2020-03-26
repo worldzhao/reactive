@@ -90,8 +90,14 @@ function runReactionWrap(reaction, fn, context, args) {
   }
 }
 
+function hasRunningReaction() {
+  return !!reactionStack.length;
+}
+
 exports.registerRunningReaction = registerRunningReaction;
 
 exports.queueReactions4Operation = queueReactions4Operation;
 
 exports.runReactionWrap = runReactionWrap;
+
+exports.hasRunningReaction = hasRunningReaction;

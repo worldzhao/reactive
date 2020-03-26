@@ -1,5 +1,8 @@
 const { proxy2Raw, raw2Proxy, connectionStore } = require("./store");
 
+// reactive与handlers/base存在循环引入 需要注意导出和导入的顺序
+exports.reactive = reactive;
+
 function reactive(raw) {
   // 已经被定义成响应式proxy了
   if (proxy2Raw.has(raw)) {
@@ -14,9 +17,6 @@ function reactive(raw) {
   // 新建响应式proxy
   return createReactive(raw);
 }
-
-// reactive与handlers/base存在循环引入 需要注意导出和导入的顺序
-exports.reactive = reactive;
 
 const { getHandlers } = require("./handlers");
 

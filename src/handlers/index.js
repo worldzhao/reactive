@@ -1,6 +1,6 @@
 const { baseHandlers } = require("./base");
 
-const collectionHandlers = {};
+const { collectionHandlers } = require("./collections");
 
 const handlers = new Map([
   [Map, collectionHandlers],
